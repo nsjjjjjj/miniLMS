@@ -1,39 +1,56 @@
-1. 프로젝트 정보
+# miniLMS
 
-개발 성격: 개인 프로젝트 (학교 과제)
+JSP, Servlet, JDBC를 사용해 만든 간단한 학사 관리 실습 프로젝트입니다. 학생, 강의, 수강 신청 정보를 화면에서 입력하고 H2 데이터베이스에 저장하는 흐름을 연습했습니다.
 
-주요 기술: Java, JSP, Servlet, JDBC
+## 주요 기능
 
-데이터베이스: H2 Database
+- 학생 정보 입력 및 조회
+- 강의 정보 입력 및 조회
+- 수강 신청 정보 입력 및 조회
+- JSP 화면과 Servlet Controller 연결
+- DAO를 통한 H2 데이터베이스 접근
 
-핵심 역량: CRUD 로직 구현, DB 스키마 설계, MVC 패턴 이해
+## 기술 스택
 
-2. 주요 기능
+- Java
+- JSP
+- Servlet
+- JDBC
+- H2 Database
+- Maven
+- Apache Tomcat
 
-계정 관리: 회원가입 및 로그인 (학생/교수 권한 구분)
+## 프로젝트 구조
 
-강의 시스템: 강의 등록, 수정, 삭제 및 전체 목록 조회
+```text
+src/main/java/ch
+├── Course.java
+├── CourseController.java
+├── CourseDAO.java
+├── EnrollController.java
+├── EnrollDAO.java
+├── Enrollment.java
+├── Student.java
+├── StudentController.java
+└── StudentDAO.java
 
-수강 신청: 학생별 수강 신청 및 취소 기능 구현
+src/main/webapp
+├── index.jsp
+└── ch
+```
 
-데이터 연동: JDBC를 이용한 H2 데이터베이스 실시간 데이터 처리
+## 실행 참고
 
-3. 기술 스택 (Tech Stack)
+이 프로젝트는 H2 TCP 서버와 Tomcat 실행 환경이 필요합니다. DAO 코드의 JDBC URL은 다음 형태를 사용합니다.
 
-언어: Java
+```text
+jdbc:h2:tcp://localhost/~/jwbookdb
+```
 
-웹 기술: JSP, Servlet
+실행 전 H2 서버를 켜고 `jwbookdb` 데이터베이스를 준비해야 합니다.
 
-데이터베이스: H2 Database
+## 한계 및 개선할 점
 
-서버: Apache Tomcat
-
-도구: Git, IntelliJ
-
-4. 학습 및 성장 포인트
-
-백엔드 기초: JSP와 Servlet의 생명주기를 이해하고, 클라이언트의 요청을 서버에서 처리하여 응답하는 전체 흐름을 익혔습니다.
-
-DB 설계: 학교에서 지정한 H2 데이터베이스를 활용하여 학사 관리에 필요한 테이블 구조를 직접 설계하고 SQL 쿼리를 작성했습니다.
-
-제약 조건 해결: 과제 가이드라인에 맞춰 지정된 기술 스택 내에서 최적의 로직을 구현하기 위해 고민했습니다.
+- 현재 DB 연결 정보가 DAO 코드에 직접 들어가 있습니다.
+- 테이블 생성 SQL과 실행 순서를 README에 더 구체적으로 남기면 재현성이 좋아집니다.
+- 입력값 검증, 예외 처리, 테스트 코드가 부족합니다.
